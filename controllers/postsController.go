@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spaik11/go-crud/initializers"
 	"github.com/spaik11/go-crud/models"
@@ -78,7 +80,7 @@ func PostsUpdate(c *gin.Context) {
 	})
 
 	// Respond with it
-	c.JSON(200, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"post": post,
 	})
 }
@@ -90,5 +92,5 @@ func PostsDelete(c *gin.Context) {
 	// Delete the post
 	initializers.DB.Delete(&models.Post{}, id)
 	// Respond
-	c.Status(200)
+	c.Status(http.StatusOK)
 }
